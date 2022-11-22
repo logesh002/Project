@@ -73,6 +73,15 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: '0px 9px 70px 0px rgb(0 0 0 / 30%) !important',
     borderRadius: '15px',
   },
+  imageCard1: {
+    margin: "auto",
+    maxWidth: 400,
+    // height: 500,
+    //backgroundColor: 'transparent',
+    boxShadow: '0px 9px 70px 0px rgb(0 0 0 / 30%) !important',
+    borderRadius: '15px',
+    minWidth: '60vh'
+  },
   imageCardEmpty: {
     height: 'auto',
   },
@@ -151,6 +160,8 @@ export const ImageUpload = () => {
   const [image, setImage] = useState(false);
   const [isLoading, setIsloading] = useState(false);
   let confidence = 0;
+  const obj ={cordana:"cordana tipss...", healthy:"heathy plant....", pestalotiopsis:"pestalotiopsis ....",sigatoka:"sigatoka...."}; 
+  //const MAX_SIZE = 5242880;
 
   const sendFile = async () => {
     if (image) {
@@ -244,7 +255,8 @@ export const ImageUpload = () => {
                   acceptedFiles={['image/*']}
                   dropzoneText={"Drag and drop an image of a banana plant leaf to process"}
                   onChange={onSelectFile}
-                />
+                  maxFileSize={10000000}
+                  />
               </CardContent>}
               {data && <CardContent className={classes.detail}>
                 <TableContainer component={Paper} className={classes.tableContainer}>
@@ -265,6 +277,7 @@ export const ImageUpload = () => {
                     </TableBody>
                   </Table>
                 </TableContainer>
+                
               </CardContent>}
               {isLoading && <CardContent className={classes.detail}>
                 <CircularProgress color="secondary" className={classes.loader} />
@@ -272,9 +285,40 @@ export const ImageUpload = () => {
                   Processing
                 </Typography>
               </CardContent>}
+              
             </Card>
-          </Grid>
+            </Grid>
           {data &&
+                
+                <Grid container
+                spacing={0}
+                direction="column"
+                alignItems="center"
+                justify="center"
+                style={{ minHeight: '10vh' }}>     
+                <Grid item sx={6}>
+                  <Card className={classes.imageCard1}>
+                  <CardActionArea>
+        
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="div">
+            Tips:
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            {obj[data.prediction]}
+          </Typography>
+        </CardContent>
+      </CardActionArea>
+
+
+                  </Card></Grid></Grid>
+
+    
+                }
+                
+          {data &&
+                
+
             <Grid item className={classes.buttonGrid} >
 
               <ColorButton variant="contained" className={classes.clearButton} color="primary" component="span" size="large" onClick={clearData} startIcon={<Clear fontSize="large" />}>
