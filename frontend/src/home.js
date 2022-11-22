@@ -162,7 +162,6 @@ export const ImageUpload = () => {
   let confidence = 0;
   const obj ={cordana:"cordana tipss...", healthy:"heathy plant....", pestalotiopsis:"pestalotiopsis ....",sigatoka:"sigatoka...."}; 
   //const MAX_SIZE = 5242880;
-
   const sendFile = async () => {
     if (image) {
       let formData = new FormData();
@@ -201,7 +200,7 @@ export const ImageUpload = () => {
     }
     setIsloading(true);
     sendFile();
-     // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [preview]);
 
   const onSelectFile = (files) => {
